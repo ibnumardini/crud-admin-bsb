@@ -1,3 +1,6 @@
+<?php
+include_once "config/Library.php";
+?>
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
@@ -13,7 +16,12 @@
                     </div>
                     <div class="content">
                         <div class="text">JUMLAH SANTRI</div>
-                        <div class="number count-to" data-from="0" data-to="1" data-speed="1" data-fresh-interval="1"></div>
+                        <?php
+                        $hitung = new Library;
+                        $data = $hitung->hitung();
+                        $result = $data->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                        <div class="number count-to" data-from="0" data-to="<?= $result['id_santri']; ?>" data-speed="1" data-fresh-interval="1"></div>
                     </div>
                 </div>
             </div>
@@ -45,7 +53,6 @@
                             <tbody>
 
                                 <?php
-                                require "config/Library.php";
                                 $tampil = new Library();
                                 $cetak = $tampil->tampil();
                                 $i = 1;

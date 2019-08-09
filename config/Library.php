@@ -42,4 +42,11 @@ class Library
         $query = $this->db->query($sql);
         return $query;
     }
+
+    public function hitung()
+    {
+        $sql = "SELECT count(*) AS id_santri FROM santri";
+        $query = $this->db->query($sql);
+        return $query;
+    }
 }
