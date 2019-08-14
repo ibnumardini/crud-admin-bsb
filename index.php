@@ -36,19 +36,19 @@
 <body class="theme-red">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
-    <div class="loader">
-        <div class="preloader">
-            <div class="spinner-layer pl-red">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
                 </div>
             </div>
+            <p>Sedang Memuat...</p>
         </div>
-        <p>Sedang Memuat...</p>
-    </div>
     </div>
     <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
@@ -467,7 +467,6 @@
 
     <?php
 
-    // die;
     if (isset($_GET["p"])) {
         if ($_GET["p"] == "add_santri") {
             include "pages/add_santri.php";
@@ -479,6 +478,7 @@
     }
 
     ?>
+
 
 
 
@@ -508,21 +508,21 @@
     <script src="plugins/chartjs/Chart.bundle.js"></script>
 
     <!-- Flot Charts Plugin Js -->
-    <script src="plugins/flot-charts/jquery.flot.js"></script>
-    <script src="plugins/flot-charts/jquery.flot.resize.js"></script>
-    <script src="plugins/flot-charts/jquery.flot.pie.js"></script>
-    <script src="plugins/flot-charts/jquery.flot.categories.js"></script>
-    <script src="plugins/flot-charts/jquery.flot.time.js"></script>
+    <!-- <script src="plugins/flot-charts/jquery.flot.js"></script> -->
+    <!-- <script src="plugins/flot-charts/jquery.flot.resize.js"></script> -->
+    <!-- <script src="plugins/flot-charts/jquery.flot.pie.js"></script> -->
+    <!-- <script src="plugins/flot-charts/jquery.flot.categories.js"></script> -->
+    <!-- <script src="plugins/flot-charts/jquery.flot.time.js"></script> -->
 
     <!-- Sparkline Chart Plugin Js -->
     <script src="plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
     <!-- Custom Js -->
     <script src="js/admin.js"></script>
-    <script src="js/pages/index.js"></script>
+    <!-- <script src="js/pages/index.js"></! -->
 
     <!-- Demo Js -->
-    <script src="js/demo.js"></script>
+    <!-- <script src="js/demo.js"></!-->
 </body>
 
 </html>

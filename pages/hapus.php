@@ -7,9 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $hapus = $data->hapus($id);
 
     if ($hapus) {
-        echo "<script>alert('Berhasil Hapus Data!')</script>";
-        header("location:../index.php");
-    } else {
-        echo "<script>alert('Gagal Hapus Data!')</script>";
+        header("Location:../index.php?succes");
     }
 }

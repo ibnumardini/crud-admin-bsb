@@ -1,5 +1,6 @@
 <?php
-include_once "config/Library.php";
+require "config/Library.php";
+require "config/link.php";
 ?>
 <section class="content">
     <div class="container-fluid">
@@ -21,7 +22,7 @@ include_once "config/Library.php";
                         $data = $hitung->hitung();
                         $result = $data->fetch(PDO::FETCH_ASSOC);
                         ?>
-                        <div class="number count-to" data-from="0" data-to="<?= $result['id_santri']; ?>" data-speed="1" data-fresh-interval="1"></div>
+                        <div class="number"><?= $result['id_santri']; ?></div>
                     </div>
                 </div>
             </div>
@@ -59,17 +60,17 @@ include_once "config/Library.php";
                                 while ($data = $cetak->fetch(PDO::FETCH_OBJ)) :
                                     ?>
 
-                                    <tr>
-                                        <td><?= $i ?></td>
-                                        <td><?= $data->nama ?></td>
-                                        <td><?= $data->alamat ?></td>
-                                        <td><?= $data->jurusan ?></td>
-                                        <td>
-                                            <a class="btn btn-success" href="index.php?p=edit&id=<?= $data->id_santri ?>">Edit</a>
-                                            <a class="btn btn-danger" onclick=" return confirm('Yakin mau di hapus?')" href="pages/hapus.php?id=<?= $data->id_santri ?>">Hapus</a>
-                                        </td>
-                                    </tr>
-                                    <?php $i++;
+                                <tr>
+                                    <td><?= $i ?></td>
+                                    <td><?= $data->nama ?></td>
+                                    <td><?= $data->alamat ?></td>
+                                    <td><?= $data->jurusan ?></td>
+                                    <td>
+                                        <a class="btn btn-success" href="index.php?p=edit&id=<?= $data->id_santri ?>">Edit</a>
+                                        <a class="btn btn-danger" href="pages/hapus.php?id=<?= $data->id_santri ?>">Hapus</a>
+                                    </td>
+                                </tr>
+                                <?php $i++;
                                 endwhile;
                                 ?>
                             </tbody>
@@ -80,12 +81,42 @@ include_once "config/Library.php";
             </div>
         </div>
 </section>
+<?php
 
-<!-- END -->
-
+if (isset($_GET["succes"])) :
+    ?>
+<div class="flash" data-flash="$_GET['succes']; "></div>
+</div>
+<?php
+endif;
+?>
 
 <script>
     $(document).ready(function() {
-        M.updateTextFields();
-    });
+        $('.btn-danger').on('click', function(e) {
+            e.preventDefault()
+            const href = $(this).attr('href')
+            Swal.fire({
+                title: 'Yakin?',
+                text: "Akan menghapus data ini!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Delete'
+            }).then((result) => {
+                if (result.value) {
+                    document.location.href = href
+                }
+            })
+        })
+        const flash = $('.flash').data('flash')
+        if (flash) {
+            Swal.fire({
+                type: 'success',
+                title: 'Data Santri!',
+                text: 'Berhasil di Hapus!'
+            })
+        }
+    })
 </script>

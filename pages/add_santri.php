@@ -1,10 +1,12 @@
 ﻿<?php
 
 require "config/Library.php";
+require "config/link.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST["submit"])) {
+        $cek = $_POST["tambah"];
         $nama = htmlspecialchars($_POST["name"]);
         $alamat = htmlspecialchars($_POST["alamat"]);
         $jurusan = htmlspecialchars($_POST["jurusan"]);
@@ -25,12 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $tambah = new Library;
             $data = $tambah->tambah($nama, $alamat, $jurusan);
-            if ($data) {
-                echo "<script>alert('Berhasil Upload Data!')</script>";
-                echo "<script>window.location = 'index.php'</script>";
-            } else {
-                echo "<script>alert('Gagal Upload Data!')</script>";
-            }
         }
     }
 }
@@ -54,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="body">
                         <form id="form_validation" method="POST">
                             <div class="form-group form-float">
+                                <input type="hidden" name="tambah" value="tambah">
                                 <div class="form-line">
                                     <input type="text" class="form-control" name="name" required>
                                     <label class="form-label">Nama Lengkap</label>
@@ -73,12 +70,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary waves-effect" name="submit" type="submit">TAMBAH</button>
+                            <button class="btn btn-primary waves-effect tambah-data" name="submit" type="submit">TAMBAH</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- #END# Basic Validation -->
     </div>
 </section>
+
+<?php
+if (isset($cek)) :
+    ?>
+
+<div class="flash-data" data-flashdata="<?= $cek ?>"></div>
+
+<?php endif; ?>
+
+<script>
+    $(document).ready(function() {
+        const flashdata = $('.flash-data').data('flashdata')
+        if (flashdata) {
+            Swal.fire({
+                type: 'success',
+                title: 'Data Santri',
+                text: ' Berhasil di Tambahkan!'
+            }).then((result) => {
+                if (result.value) {
+                    document.location.href = 'index.php'
+                }
+            })
+        }
+    })
+</script>

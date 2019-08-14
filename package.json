@@ -1,0 +1,25 @@
+{
+  "name": "AdminBSB",
+  "version": "1.0.0",
+  "description": "Crud Admin Bsb By Kur Studio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kurstudio/crud-admin-bsb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kurstudio/crud-admin-bsb/issues"
+  },
+  "homepage": "https://github.com/kurstudio/crud-admin-bsb#readme",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "sweetalert2": "^8.15.3"
+  },
+  "devDependencies": {}
+}

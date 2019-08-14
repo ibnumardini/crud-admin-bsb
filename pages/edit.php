@@ -2,11 +2,13 @@
 
 
 require "config/Library.php";
+require "config/link.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST["submit"])) {
 
         $id = $_GET["id"];
+        $cek = $_POST["edit"];
         $nama = htmlspecialchars($_POST["name"]);
         $alamat = htmlspecialchars($_POST["alamat"]);
         $jurusan = htmlspecialchars($_POST["jurusan"]);
@@ -27,12 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $tambah = new Library;
             $data = $tambah->update($id, $nama, $alamat, $jurusan);
-            if ($data) {
-                echo "<script>alert('Berhasil Upload Data!')</script>";
-                echo "<script>window.location = 'index.php'</script>";
-            } else {
-                echo "<script>alert('Gagal Upload Data!')</script>";
-            }
         }
     }
 }
@@ -63,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <form id="form_validation" method="POST">
                             <div class="form-group form-float">
                                 <div class="form-line">
+                                    <input type="hidden" name="edit" value="edit">
                                     <input type="text" class="form-control" name="name" value="<?= $cetak->nama ?>" required>
                                     <label class="form-label">Nama Lengkap</label>
                                 </div>
@@ -87,6 +84,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
-        <!-- #END# Basic Validation -->
     </div>
 </section>
+
+<?php
+if (isset($cek)) :
+    ?>
+
+<div class="flash-data" data-flashdata="<?= $cek ?>"></div>
+
+<?php endif; ?>
+
+
+<script>
+    $(document).ready(function() {
+        const flashdata = $('.flash-data').data('flashdata')
+        if (flashdata) {
+            Swal.fire({
+                type: 'success',
+                title: 'Data Santri',
+                text: ' Berhasil di Ubah!'
+            }).then((result) => {
+                if (result.value) {
+                    document.location.href = 'index.php'
+                }
+            })
+        }
+    })
+</script>
